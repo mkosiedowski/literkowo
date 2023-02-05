@@ -10,16 +10,24 @@ function App() {
     useEffect(() => {
         let urlWord: string = '';
         try {
-            urlWord = window.location.hash ? decodeURIComponent(escape(window.atob(window.location.hash.substring(1)))) : '';
+            const urlHash = window.location.hash;
+            urlWord = urlHash ? decodeURIComponent(escape(window.atob(urlHash.substring(1)))) : '';
             if (urlWord.length === LENGTH) {
                 setWord(urlWord);
             }
         } catch (e) {}
     }, []);
 
+    const handleChooseWord = (newWord: string) => {
+        if (newWord.length === LENGTH) {
+            window.location.hash = window.btoa(unescape(encodeURIComponent(newWord)));
+            setWord(newWord);
+        }
+    }
+
     let component = <></>;
     if (word.length !== LENGTH) {
-        component = <GameStartForm lenght={LENGTH} onChoose={(newWord) => setWord(newWord)} />;
+        component = <GameStartForm length={LENGTH} onChoose={handleChooseWord} />;
     } else {
         component = <Game correctWord={word} />
     }

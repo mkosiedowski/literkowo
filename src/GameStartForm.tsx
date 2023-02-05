@@ -2,22 +2,17 @@ import {useState} from "react";
 import {KEYS} from "./game/Keyboard";
 
 type Props = {
-    lenght: number;
+    length: number;
     onChoose: (word: string) => void;
 }
-const GameStartForm = ({ lenght, onChoose }: Props) => {
+const GameStartForm = ({ length, onChoose }: Props) => {
     const [word, setWord] = useState('');
 
-    const handleChange = (value: string) => {
-        if (value.length <= lenght && value.split('').every(l => KEYS.flatMap(a => a).includes(l.toLowerCase()))) {
-            setWord(value.toUpperCase());
-        }
-    }
+    const isValidLetter = (letter: string) => KEYS.flatMap(a => a).includes(letter.toLowerCase());
 
-    const handlePlay = () => {
-        if (word.length === lenght) {
-            window.location.hash = window.btoa(unescape(encodeURIComponent(word)));
-            onChoose(word);
+    const handleChange = (value: string) => {
+        if (value.length <= length && value.split('').every(isValidLetter)) {
+            setWord(value.toUpperCase());
         }
     }
 
@@ -32,7 +27,7 @@ const GameStartForm = ({ lenght, onChoose }: Props) => {
                 />
             </div>
             <div className="button">
-                <button onClick={handlePlay} disabled={word.length !== lenght}>Graj!</button>
+                <button onClick={() => onChoose(word)} disabled={word.length !== length}>Graj!</button>
             </div>
         </form>
     </div>;
