@@ -1,5 +1,3 @@
-import word from "./Word";
-
 type Props = {
     words: string[];
     onUseKey: (char: string) => void;

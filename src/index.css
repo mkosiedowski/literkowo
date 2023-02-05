@@ -13,7 +13,7 @@ body {
 }
 
 .keyboardRow {
-  margin: 10px 0;
+  margin: 2px 0;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -21,7 +21,7 @@ body {
 
 .keyboardKey {
   min-width: 21px;
-  height: 21px;
+  height: 35px;
   text-align: center;
   margin: 2px;
   padding: 4px;
@@ -30,7 +30,23 @@ body {
   background: #f0f0f0;
   border-radius: 6px;
   cursor: pointer;
-  line-height: 21px;
+  line-height: 35px;
+}
+
+@media screen and (min-width: 500px) {
+  .keyboardKey {
+    min-width: 35px;
+  }
+}
+
+@media screen and (max-width: 359px) {
+  .keyboardKey {
+    min-width: 19px;
+    max-width: 50px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 2px;
+  }
 }
 
 .keyboardKey.enter {
