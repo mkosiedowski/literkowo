@@ -7,7 +7,95 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.keyboard {
+  margin-top: 20px;
+  border-top: 1px solid black;
+}
+
+.keyboardRow {
+  margin: 10px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.keyboardKey {
+  min-width: 20px;
+  height: 20px;
+  text-align: center;
+  margin: 2px;
+  padding: 4px;
+  border: 1px solid black;
+  text-transform: uppercase;
+  background: #f0f0f0;
+  border-radius: 6px;
+  cursor: pointer;
+  line-height: 20px;
+}
+
+.keyboardKey.enter {
+  padding: 4px 8px;
+}
+
+.keyboardKey.\<- {
+  padding: 4px 8px;
+}
+
+.used {
+  color: white;
+  background: gray;
+}
+
+.matched {
+  background: palegreen;
+  color: black;
+  font-weight: bold;
+}
+
+.wordRow {
+  margin: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.wordChar {
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  margin: 2px 8px;
+  padding: 4px;
+  border: 1px solid black;
+  text-transform: uppercase;
+  font-size: 20px;
+  line-height: 35px;
+}
+
+.wordChar.correct {
+  background: palegreen;
+}
+
+.wordChar.misplaced {
+  background: lightyellow;
+}
+
+.form {
+  text-align: center;
+  margin: auto;
+  width: 300px;
+}
+
+.input {
+  margin: 10px 0;
+}
+
+.input input {
+  font-size: 20px;
+  padding: 4px 8px;
+  text-align: center;
+}
+
+.button button {
+  font-size: 20px;
+  text-transform: capitalize;
 }
