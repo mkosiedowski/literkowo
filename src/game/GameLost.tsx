@@ -5,7 +5,7 @@ const GameLost = () => {
     return (
         visible ? <div className="msg gameLost">
             <span className="closeMsg" onClick={() => setVisible(false)}>x</span>
-            Nie udało się!
+            <div>Nie udało się!</div>
             <button onClick={() => window.location.reload()}>Spróbuj jeszcze raz</button>
         </div> : null
     )
