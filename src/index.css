@@ -73,6 +73,10 @@ body {
   font-weight: bold;
 }
 
+.incorrect {
+  background: #f0f0f0;
+}
+
 .wordRow {
   margin: 2px 0;
   display: flex;
@@ -128,4 +132,36 @@ body {
   position: fixed;
   top: 30px;
   right: 50px;
+}
+
+.msg {
+  position: absolute;
+  left: 50%;
+  top: 500px;
+  transform: translate(-50%, -50%);
+  padding: 50px;
+  font-size: 30px;
+  border-radius: 16px;
+  box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+}
+
+.gameWon {
+  background: #d1ffd1;
+}
+
+.gameLost {
+  width: 50%;
+  background: #ffebb0;
+}
+
+.closeMsg {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 18px;
+  border: solid black 1px;
+  border-radius: 100%;
+  width: 22px;
+  height: 22px;
+  line-height: 18px;
 }

@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import Word from "./Word";
 import Keyboard from "./Keyboard";
+import GameWon from "./GameWon";
+import GameLost from "./GameLost";
 
 type Props = {
     correctWord: string;
@@ -10,8 +12,9 @@ const Game = ({ correctWord }: Props) => {
     const [words, setWords] = useState<string[]>([]);
     const [currentWord, setCurrentWord] = useState('');
 
-    const isGameEnded = words.length === 6
-        || (words.length > 0 && words[words.length - 1].toLowerCase() === correctWord.toLowerCase());
+    const isGameWon = words.length > 0 && words[words.length - 1].toLowerCase() === correctWord.toLowerCase();
+    const isGameEnded = words.length === 6 || isGameWon;
+    const isGameLost = words.length === 6 && !isGameWon;
 
     const handleLetter = (letter: string) => {
         if (isGameEnded) return;
@@ -45,10 +48,12 @@ const Game = ({ correctWord }: Props) => {
     const remaining = 5 - words.length;
     return (
         <div className="game">
+            {isGameWon && <GameWon />}
+            {isGameLost && <GameLost />}
             {words.map((word, index) => (
                 <Word key={`word-${index}`} word={word} length={length} correctWord={correctWord.toLowerCase()} />
             ))}
-            {<Word word={currentWord} length={length} />}
+            {!isGameEnded && <Word word={currentWord} length={length} />}
             {remaining > 0 && [...Array(remaining).keys()].map(index => (
                 <Word word="" length={length} key={`remaining-${index}`} />
             ))}

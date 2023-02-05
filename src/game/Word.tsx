@@ -34,11 +34,12 @@ const Word = ({word, length, correctWord}: Props) => {
 
     const correctClass = (index: number) => wordMap[index]?.correct ? 'correct' : '';
     const misplacedClass = (index: number) => (!wordMap[index]?.correct && wordMap[index]?.misplaced) ? 'misplaced' : '';
+    const incorrectClass = (index: number) => (!!correctWord && !wordMap[index]?.correct && !wordMap[index]?.misplaced) ? 'incorrect' : '';
 
     return (
         <div className="wordRow">
             {[...Array(length).keys()].map((_, index) => (
-                <div key={index} className={`wordChar ${correctClass(index)} ${misplacedClass(index)}`}>
+                <div key={index} className={`wordChar ${correctClass(index)} ${misplacedClass(index)} ${incorrectClass(index)}`}>
                     {wordMap[index]?.letter || ''}
                 </div>
             ))}

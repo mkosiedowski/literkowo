@@ -1,3 +1,5 @@
+import {useLayoutEffect} from "react";
+
 type Props = {
     words: string[];
     onUseKey: (char: string) => void;
@@ -25,6 +27,20 @@ const Keyboard = ({words, onUseKey, onEnter, onBackspace, correctWord}: Props) =
             onUseKey(letter);
         }
     }
+    useLayoutEffect(() => {
+        const onKeyDown = (event: KeyboardEvent) => {
+            if (event.key === 'Backspace') {
+                onBackspace();
+            } else if (event.key === 'Enter') {
+                onEnter();
+            } else if (KEYS.flatMap(row => [...row]).includes(event.key)) {
+                handleClick(event.key);
+            }
+        }
+        window.document.addEventListener('keydown', onKeyDown);
+
+        return () => window.document.removeEventListener('keydown', onKeyDown);
+    })
     const isUsed = (letter: string) => words.flatMap(word => [...word.split('')]).includes(letter);
     const correctLetters = correctWord.split('')
         .filter((l, index) => words.some(word => word.charAt(index) === l));
