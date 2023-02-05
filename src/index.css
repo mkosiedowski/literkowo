@@ -9,7 +9,6 @@ body {
 
 .keyboard {
   margin-top: 20px;
-  border-top: 1px solid black;
 }
 
 .keyboardRow {
@@ -124,4 +123,9 @@ body {
 
 .newWordButton {
   margin-top: 30px
+}
+.shareButton {
+  position: fixed;
+  top: 30px;
+  right: 50px;
 }
