@@ -1,13 +1,15 @@
+import word from "./Word";
+
 type Props = {
-    usedKeys: string[];
+    words: string[];
     onUseKey: (char: string) => void;
     onBackspace: () => void;
     onEnter: () => void;
-    word: string;
+    correctWord: string;
 };
 
 const ENTER = 'enter';
-const BACKSPACE = '<-'
+const BACKSPACE = '↩'
 
 export const KEYS = [
     ['ą', 'ć', 'ę', 'ł', 'ń', 'ó', 'ś', 'ź', 'ż'],
@@ -15,7 +17,7 @@ export const KEYS = [
     ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
     [ENTER, 'z', 'x', 'c', 'v', 'b', 'n', 'm', BACKSPACE],
 ]
-const Keyboard = ({usedKeys, onUseKey, onEnter, onBackspace, word}: Props) => {
+const Keyboard = ({words, onUseKey, onEnter, onBackspace, correctWord}: Props) => {
     const handleClick = (letter: string) => {
         if (letter === ENTER) {
             onEnter();
@@ -25,6 +27,12 @@ const Keyboard = ({usedKeys, onUseKey, onEnter, onBackspace, word}: Props) => {
             onUseKey(letter);
         }
     }
+    const isUsed = (letter: string) => words.flatMap(word => [...word.split('')]).includes(letter);
+    const correctLetters = correctWord.split('')
+        .filter((l, index) => words.some(word => word.charAt(index) === l));
+    const isCorrect = (letter: string) => correctLetters.includes(letter);
+    const isMisplaced = (letter: string) => !isCorrect(letter)
+        && words.flatMap(word => [...word.split('')]).filter(l => correctWord.includes(l)).includes(letter);
     return (
         <div className="keyboard">
             {KEYS.map((row, index) => (
@@ -32,7 +40,7 @@ const Keyboard = ({usedKeys, onUseKey, onEnter, onBackspace, word}: Props) => {
                     {row.map(letter => (
                         <div
                             onClick={() => handleClick(letter)}
-                            className={`keyboardKey ${usedKeys.includes(letter) ? 'used' : ''} ${letter} ${word.includes(letter) && usedKeys.includes(letter) ? 'matched' :''}`}
+                            className={`keyboardKey ${isUsed(letter) ? 'used' : ''} ${letter} ${isCorrect(letter) ? 'matched' :''} ${isMisplaced(letter) ? 'misplaced' : ''}`}
                             key={letter}
                         >{letter}</div>
                     ))}

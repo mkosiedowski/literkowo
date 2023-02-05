@@ -1,5 +1,5 @@
 body {
-  margin: 0;
+  margin: 20px 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -20,8 +20,8 @@ body {
 }
 
 .keyboardKey {
-  min-width: 20px;
-  height: 20px;
+  min-width: 21px;
+  height: 21px;
   text-align: center;
   margin: 2px;
   padding: 4px;
@@ -30,15 +30,15 @@ body {
   background: #f0f0f0;
   border-radius: 6px;
   cursor: pointer;
-  line-height: 20px;
+  line-height: 21px;
 }
 
 .keyboardKey.enter {
   padding: 4px 8px;
 }
 
-.keyboardKey.\<- {
-  padding: 4px 8px;
+.keyboardKey.↩ {
+  padding: 4px;
 }
 
 .used {
@@ -52,8 +52,14 @@ body {
   font-weight: bold;
 }
 
+.misplaced {
+  background: lightyellow;
+  color: black;
+  font-weight: bold;
+}
+
 .wordRow {
-  margin: 10px;
+  margin: 2px 0;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -98,4 +104,8 @@ body {
 .button button {
   font-size: 20px;
   text-transform: capitalize;
+}
+
+.newWordButton {
+  margin-top: 30px
 }
